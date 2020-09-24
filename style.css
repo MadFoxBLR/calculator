@@ -63,10 +63,10 @@ body {
   transform: translateY(-1px);
 }
 .btn-long {
-  width: 183px;
+  width: 85px;
 }
 .btn-equal {
-  height: 145px;
+  height: 60px;
 }
 input,
 button {
