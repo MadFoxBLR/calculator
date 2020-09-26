@@ -20,6 +20,7 @@ body {
   color: rgb(221, 221, 221);
 }
 .calc-display-input {
+  border: 1px solid #333;
   width: 360px;
   height: 60px;
   margin: 20px 0;
@@ -67,6 +68,7 @@ body {
 }
 .btn-equal {
   height: 60px;
+  background-color: rgba(0, 0, 2, 0.219);
 }
 input,
 button {
@@ -102,6 +104,8 @@ button {
   }
   .btn {
     width: 64px;
+    font-size: 20px;
+
   }
   .btn-long {
     width: 65px;
@@ -116,7 +120,7 @@ button {
   }
   .btn {
     width: 60px;
-    font-size: 27px;
+    font-size: 18px;
   }
   .btn-long {
     width: 63px;
