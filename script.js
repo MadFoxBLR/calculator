@@ -1,12 +1,22 @@
 const numbers = document.querySelectorAll('.number');
+//в переменную numbers записывается значение с классом number
+
 const operations = document.querySelectorAll('.operator');
+ //в переменную operations записывается значение с классом operator, символ опирации
+
 const clearBtns = document.querySelectorAll('.clear-btn');
 const decimalBtn = document.getElementById('decimal');
+
+const SqrtBtn = document.getElementById('sqrt');
+
 const result = document.getElementById('result');
+
 const display = document.getElementById('display');
-let MemoryCurrentNumber = 0;
-let MemoryNewNumber = false;
-let MemoryPendingOperation = '';
+let MemoryCurrentNumber = 0; //текущая цифра
+let MemoryNewNumber = false; //Ввели ли мы новое число
+let MemoryPendingOperation = ''; //Последняя сохранённая операция
+
+
 
 for (var i = 0; i < numbers.length; i++) {
   var number = numbers[i];
@@ -31,21 +41,24 @@ for (var i = 0; i < clearBtns.length; i++) {
 
 decimalBtn.addEventListener('click', decimal);
 
+
+
 function numberPress(number) {
   if (MemoryNewNumber) {
     display.value = number;
     MemoryNewNumber = false;
   } else {
-    if (display.value === '0') {
-      display.value = number;
+    if (display.value === '0') { // === это равно 0, а 0 как строка
+      display.value = number; // значение импута присвоить значение цифры
     } else {
-      display.value += number;
+      display.value += number; //+= это добовляй цифру
     }
   }
 }
 
 function operationPress(op) {
   let localOperationMemory = display.value;
+  let PowResult = 0;
 
   if (MemoryNewNumber && MemoryPendingOperation !== '=') {
     display.value = MemoryCurrentNumber;
@@ -59,12 +72,49 @@ function operationPress(op) {
       MemoryCurrentNumber *= +localOperationMemory;
     } else if (MemoryPendingOperation === '/') {
       MemoryCurrentNumber /= +localOperationMemory;
-    } else {
-      MemoryCurrentNumber = +localOperationMemory;
+
+
+           //Возведение в степень
+    }else if (MemoryPendingOperation === 'pow') {
+     // MemoryNewNumber = false;
+      //PowResult = localOperationMemory;
+     
+     // MemoryCurrentNumber = (Math.pow(localOperationMemory, MemoryCurrentNumber));
+     MemoryCurrentNumber = (Math.pow(MemoryCurrentNumber,localOperationMemory));
+      //MemoryPendingOperation = '=';
+      display.value = PowResult;
+  
+      
+        console.log(PowResult);
+        console.log(MemoryCurrentNumber);
+        console.log(MemoryPendingOperation);
+    }
+    
+      
+    else {
+     
+      MemoryCurrentNumber = +localOperationMemory; //кнопка =
+      
     }
     display.value = MemoryCurrentNumber;
     MemoryPendingOperation = op;
+  } //Извлечение корня
+   if (MemoryPendingOperation === 'sqrt') {
+    
+      MemoryNewNumber = true;
+      MemoryCurrentNumber = (Math.sqrt(localOperationMemory));
+      MemoryPendingOperation = '='; 
+      display.value = MemoryCurrentNumber;
+      
+      console.log(MemoryCurrentNumber);
+      console.log(MemoryPendingOperation);
+
   }
+ 
+  
+
+
+
 }
 
 function decimal(argument) {
@@ -92,3 +142,4 @@ function clear(id) {
     MemoryPendingOperation = '';
   }
 }
+
