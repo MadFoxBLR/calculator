@@ -7,6 +7,10 @@ const operations = document.querySelectorAll('.operator');
 const clearBtns = document.querySelectorAll('.clear-btn');
 const decimalBtn = document.getElementById('decimal');
 
+
+const minusBtn = document.getElementById('minus');
+ 
+
 const SqrtBtn = document.getElementById('sqrt');
 
 const result = document.getElementById('result');
@@ -40,7 +44,7 @@ for (var i = 0; i < clearBtns.length; i++) {
 }
 
 decimalBtn.addEventListener('click', decimal);
-
+minusBtn.addEventListener('click', minus);
 
 
 function numberPress(number) {
@@ -130,6 +134,22 @@ function decimal(argument) {
   }
   display.value = localDecimalMemory;
 }
+
+
+function minus(argument) {
+  let localDecimalMemory = display.value;
+
+  if (MemoryNewNumber) {
+    localDecimalMemory = '-';
+    MemoryNewNumber = false;
+  } else {
+    if (localDecimalMemory.indexOf('-') === -1) {
+      localDecimalMemory += '-';
+    } 
+  }
+  display.value = localDecimalMemory;
+}
+
 
 function clear(id) {
   if (id === 'ce') {

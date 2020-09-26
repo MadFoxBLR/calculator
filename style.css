@@ -48,6 +48,18 @@ body {
   cursor: pointer;
   transition: 0.1s all;
 }
+.minus {
+  width: 85px;
+  height: 30px; 
+}
+.madein {
+  width: 100%;
+  background-color:transparent;
+}
+span {
+  color:red;
+  font-size: 1.5em;
+}
 .btn-hover-red:hover {
   background-color: #d83e33;
   color: #f2f2f2;
